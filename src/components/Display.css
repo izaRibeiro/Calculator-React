@@ -10,3 +10,7 @@
     color: aliceblue;
     overflow: hidden;
 }
+
+.newOperation {
+    font-size: 0.5em;
+}

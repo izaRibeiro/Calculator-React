@@ -8,6 +8,7 @@ const initialState = {
   displayValue: '0',
   clearDisplay: false,
   operation: null,
+  showOperation: true,
   values: [0, 0],
   current: 0,
 };
@@ -29,14 +30,33 @@ export default class Calculator extends Component {
 
   setOperation(operation) {
     if (this.state.current === 0) {
-      this.setState({ operation, current: 1, clearDisplay: true });
+      this.setState({
+        operation,
+        current: 1,
+        clearDisplay: true,
+        showOperation: true,
+      });
     } else {
       const equals = operation === '=';
       const currentOperation = this.state.operation;
 
       const values = [...this.state.values];
       try {
-        values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`);
+        if (currentOperation == '+') {
+          values[0] = values[0] + values[1];
+        }
+
+        if (currentOperation == '-') {
+          values[0] = values[0] - values[1];
+        }
+
+        if (currentOperation == '*') {
+          values[0] = values[0] * values[1];
+        }
+
+        if (currentOperation == '/') {
+          values[0] = values[0] / values[1];
+        }
       } catch (error) {
         values[0] = this.state.values[0];
       }
@@ -53,7 +73,12 @@ export default class Calculator extends Component {
   }
 
   addDigit(number) {
-    if (number === '.' && this.state.displayValue.includes('.')) {
+    if (
+      number === '.' &&
+      this.state &&
+      this.state.displayValue &&
+      this.state.displayValue.includes('.')
+    ) {
       return;
     }
 
@@ -62,7 +87,7 @@ export default class Calculator extends Component {
 
     const currentValue = clearDisplay ? '' : this.state.displayValue;
     const displayValue = currentValue + number;
-    this.setState({ displayValue, clearDisplay: false });
+    this.setState({ displayValue, clearDisplay: false, showOperation: false });
 
     if (number !== '.') {
       const i = this.state.current;
@@ -77,7 +102,10 @@ export default class Calculator extends Component {
   render() {
     return (
       <div className="calculator">
-        <Display value={this.state.displayValue} />
+        <Display
+          value={this.state.displayValue}
+          operation={this.state.showOperation ? this.state.operation : null}
+        />
         <Button label="AC" click={this.clearMemory} triple />
         <Button label="/" click={this.setOperation} operation />
         <Button label="7" click={this.addDigit} />
