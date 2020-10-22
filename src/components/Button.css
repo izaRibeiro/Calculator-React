@@ -30,5 +30,5 @@
 }
 
 .button.operation:active {
-    background-color: #38285f96;
+    background-color: rgba(97, 97, 97, 0.315);
 }
