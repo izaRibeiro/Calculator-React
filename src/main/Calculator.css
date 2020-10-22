@@ -6,4 +6,5 @@
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: 1fr 48px 48px 48px 48px 48px;
+    background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));
 }

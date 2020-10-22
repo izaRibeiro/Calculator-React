@@ -1,6 +1,6 @@
 :root {
-    --bg-button: #f0f0f0;
-    --border-button: solid 1px #888;
+    --bg-button: rgba(0, 0, 0, 0.376);
+    --border-button: solid 1px #0004;
 }
 
 .button {
@@ -10,10 +10,11 @@
     border-right: var(--border-button);
     border-bottom: var(--border-button);
     outline: none;
+    color: rgb(226, 224, 224);
 }
 
 .button:active {
-    background-color: #ccc;
+    background-color: rgba(97, 97, 97, 0.315);
 }
 
 .button.double {
@@ -25,11 +26,9 @@
 }
 
 .button.operation {
-    background-color: #855bf2;
-    color: #FFF;
+    background-color: rgba(27, 27, 27, 0.267);
 }
 
 .button.operation:active {
-    background-color: #5e16b4cc;
-    color: #FFF;
+    background-color: #38285f96;
 }
